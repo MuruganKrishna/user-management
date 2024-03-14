@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 function AppLayout() {
   return (
     <>
-      <h1>App Layout</h1>
+      {/* <h1>App Layout</h1> */}
       {<Outlet />}
     </>
   );

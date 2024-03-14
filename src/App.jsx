@@ -10,13 +10,21 @@ import New from "./components/admin/new";
 import Edit from "./components/admin/edit";
 import UserLayout from "./components/layout/UserLayout";
 import UserHome from "./components/user/home";
+import UserEdit from "./components/user/edit";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
       { path: "login", element: <Login /> },
-      { path: "logout", element: <Signup /> },
+      { path: "signup", element: <Signup /> },
+      {
+        path: "logout",
+        loader: () => {
+          console.log("logged out");
+          return null;
+        },
+      },
       {
         path: "admins",
         element: <AdminLayout />,
@@ -41,7 +49,10 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <UserLayout />,
-        children: [{ index: true, element: <UserHome /> }],
+        children: [
+          { index: true, element: <UserHome /> },
+          { path: "edit", element: <UserEdit /> },
+        ],
       },
     ],
   },

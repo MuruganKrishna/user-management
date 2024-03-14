@@ -1,0 +1,65 @@
+.loginPage {
+  --bg-clr1: rgb(2, 0, 36);
+  --bg-clr2: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 47, 121, 0.9697128851540616) 42%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  background: var(--bg-clr1);
+  background: var(--bg-clr2);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  padding: 3rem;
+  border-radius: 15px;
+  background-color: aliceblue;
+}
+.card h1 {
+  text-align: center;
+  padding: 1rem;
+}
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.loginForm > * {
+  border-radius: 5px;
+  border-color: var(--bg-clr1);
+  font-size: 1.2rem;
+}
+.loginForm button {
+  margin-top: 1rem;
+  background: var(--bg-clr1);
+  background: var(--bg-clr2);
+  color: aliceblue;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: linear 100ms;
+  padding: 0.5rem;
+}
+.loginForm button:hover {
+  box-shadow: 0 0 5px 2px var(--bg-clr1);
+}
+.loginForm input {
+  padding: 0.5rem;
+}
+/* @media (max-width: 768px) {
+  .card {
+    flex-grow: 1;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+} */
+@media (max-width: 600px) {
+  .card {
+    flex-grow: 1;
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}

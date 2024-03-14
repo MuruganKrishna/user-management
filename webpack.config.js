@@ -18,7 +18,15 @@ module.exports = {
       ,
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
       { test: /\.(png|jpeg|jpg|svg)$/, type: "asset/resource" },
     ],
@@ -31,5 +39,6 @@ module.exports = {
     port: 3000,
     open: true,
     hot: true,
+    historyApiFallback: true,
   },
 };
