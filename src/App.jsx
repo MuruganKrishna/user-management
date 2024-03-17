@@ -3,14 +3,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./components/login";
 import AppLayout from "./components/layout/AppLayout";
 import Signup from "./components/signup";
-import AdminLayout from "./components/layout/AdminLayout";
-import Show from "./components/admin/show";
+import AdminLayout from "./components/layout/admin-layout";
+import Show, { loader as showLoader } from "./components/admin/show";
 import Home from "./components/admin/home";
-import New from "./components/admin/new";
+import New, { action } from "./components/admin/new";
 import Edit from "./components/admin/edit";
 import UserLayout from "./components/layout/UserLayout";
 import UserHome from "./components/user/home";
 import UserEdit from "./components/user/edit";
+import { getDataFromLocal } from "./utils/http";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,14 +32,23 @@ const router = createBrowserRouter([
         children: [
           {
             path: ":id",
-            element: <Show />,
             children: [
+              { index: true, element: <Show /> },
               {
                 path: "users",
                 children: [
-                  { index: true, element: <Home /> },
-                  { path: ":id", element: <Show /> },
-                  { path: "new", element: <New /> },
+                  {
+                    index: true,
+                    element: <Home />,
+                    loader: () => getDataFromLocal("users"),
+                  },
+                  { path: ":id", element: <Show />, loader: showLoader },
+                  {
+                    path: "new",
+                    element: <New />,
+                    action: action,
+                    id: "user-new",
+                  },
                   { path: ":id/edit", element: <Edit /> },
                 ],
               },

@@ -1,0 +1,36 @@
+.sideBar {
+  grid-area: sideBar;
+  background-color: #0d2b47;
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+.sideBar1 {
+  flex-basis: 20%;
+}
+.sideBar1 h2 {
+  text-align: center;
+  padding-block: 1rem;
+}
+.sideBar2 {
+  flex-basis: 80%;
+}
+.sideBar2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.userSideBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+.userSideBar img {
+  width: 34px;
+  height: 34px;
+  background-color: white;
+  border-radius: 100vh;
+  padding: 0.25rem;
+}

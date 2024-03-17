@@ -1,0 +1,36 @@
+.AdminLayout {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas:
+    "sideBar header"
+    "sideBar main";
+}
+.main {
+  grid-area: main;
+  background-color: #fafbfd;
+  display: grid;
+  overflow: auto;
+  gap: 0.5rem;
+  padding: 2rem;
+}
+@media (max-width: 768px) {
+  .main {
+    grid-template-areas: initial;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 1fr; */
+    grid-template-rows: initial;
+  }
+}
+@media (max-width: 600px) {
+  .AdminLayout {
+    width: 100%;
+    grid-template-columns: initial;
+    grid-template-rows: 1fr 1fr 10fr;
+    grid-template-areas:
+      "header"
+      "sideBar"
+      "main";
+  }
+}

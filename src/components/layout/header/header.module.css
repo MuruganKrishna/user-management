@@ -1,0 +1,58 @@
+.header {
+  grid-area: header;
+  background-color: #ffffff;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 1px 4px 1px rgba(0, 100, 23, 0.1);
+}
+.hambrg {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.hambrg img {
+  width: 50px;
+  padding: 0.25rem;
+}
+.search {
+  flex-grow: 15;
+  display: flex;
+  gap: 0.25rem;
+}
+.search input {
+  font-size: 1.5rem;
+  border: 1px solid white;
+  background: #ffffff;
+  outline: none;
+}
+/* .search input:focus {
+  border-color: #f1ab40;
+} */
+.search img {
+  width: 40px;
+  padding: 0.25rem;
+}
+
+.userIcon {
+  flex-grow: 1;
+  background-color: #f1ab40;
+  border-radius: 100vh;
+  font-size: 3rem;
+  text-align: center;
+}
+.userName {
+  flex-grow: 3;
+  display: flex;
+  justify-content: center;
+}
+.setting {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+.setting img {
+  width: 25px;
+}

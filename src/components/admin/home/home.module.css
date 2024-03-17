@@ -1,0 +1,59 @@
+.cardsContainer {
+  padding: 1rem;
+  background-color: aliceblue;
+  color: black;
+  box-shadow: 0 0 10px 2px rgba(13, 13, 13, 0.1);
+  border-radius: 5px;
+}
+.cardsContainer > * {
+  margin-bottom: 1rem;
+}
+.card {
+  display: flex;
+  color: rgb(1, 5, 11);
+  padding: 0.5rem;
+  align-items: center;
+  border-bottom: 1px solid rgba(13, 13, 13, 0.25);
+}
+.card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 100vh;
+}
+.card p {
+  flex: 1;
+  padding: 0.5rem;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+.cardHeader {
+  display: flex;
+  color: rgb(236 238 241);
+  background-color: #1f578e;
+  padding: 0.5rem;
+}
+.cardHeader p {
+  flex: 1;
+  padding: 0.5rem;
+  overflow: hidden;
+  text-wrap: nowrap;
+  text-overflow: ellipsis;
+}
+.card p:nth-child(1),
+.cardHeader p:nth-child(1) {
+  flex: 0.5;
+}
+.new {
+  padding-block: 0.5rem;
+  padding-inline: 1rem;
+  font-size: 1em;
+  color: rgb(236 238 241);
+  background-color: #1f578e;
+  border-radius: 5px;
+  /* border: none; */
+  border: 1px solid black;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
