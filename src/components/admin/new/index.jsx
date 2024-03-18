@@ -8,8 +8,9 @@ import {
 } from "../../../utils/states";
 import { useState } from "react";
 import Button from "../../UI/button";
-import { createUser } from "../../../utils/http";
+import { createUser } from "../../../utils/user";
 import { parseFormData } from "parse-nested-form-data";
+import { createAddress } from "../../../utils/address";
 
 function New() {
   const [cities, setCities] = useState(["Please Select State First"]);
@@ -65,7 +66,9 @@ function New() {
 export default New;
 
 export const action = async ({ params, request }) => {
-  const formData = await request.formData();
-  await createUser(parseFormData(formData));
+  const formData = parseFormData(await request.formData());
+  // await createUserWithAddress(parseFormData(formData));
+  const response = await createUser(formData.user);
+  await createAddress(response.data.id, formData.address);
   return redirect(`/admins/${params.id}/users`);
 };

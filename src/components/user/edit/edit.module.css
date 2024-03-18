@@ -1,0 +1,53 @@
+.editPage {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  min-width: 300px;
+  align-items: center;
+  border: 1px solid rgba(13, 13, 13, 0.2);
+  border-radius: 25px;
+  padding: 1rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.editPage img {
+  width: 100px;
+  height: 100px;
+  border: 1px solid;
+  border-radius: 100vh;
+  padding: 0.25rem;
+}
+.editPage input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.editPage button {
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: linear 100ms;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1em;
+  align-self: center;
+  padding-inline: 1rem;
+}
+.editPage button:hover {
+  box-shadow: 0 0 5px 2px grey;
+}
+.btnGroup {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-around;
+}
+.btnGroup a {
+  text-decoration: none;
+  color: black;
+}

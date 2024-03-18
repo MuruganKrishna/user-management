@@ -1,20 +1,10 @@
 import { Form } from "react-router-dom";
 import Input from "../input";
-function AuthForm({ isSignUP, className }) {
+function AuthForm({ className }) {
   return (
-    <Form className={className.loginForm}>
+    <Form className={className.loginForm} method="post">
       <Input type="text" name="email" label="Email" />
-      {!isSignUP && <Input type="password" name="password" label="Password" />}
-      {isSignUP && (
-        <>
-          <Input type="password" name="newPassword" label="New Password" />
-          <Input
-            type="password"
-            name="confirmPassword"
-            label="Confirm Password"
-          />
-        </>
-      )}
+      <Input type="password" name="password" label="Password" />
       <button>Login</button>
     </Form>
   );

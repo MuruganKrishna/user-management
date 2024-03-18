@@ -1,5 +1,6 @@
 import styles from "./show.module.css";
-import { getUser, getUserAddress } from "../../../utils/http";
+import { getUser } from "../../../utils/user";
+import { getUserAddress } from "../../../utils/address";
 import { useLoaderData } from "react-router";
 function Show() {
   const { user, address } = useLoaderData();

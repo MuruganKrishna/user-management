@@ -1,0 +1,35 @@
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.inputSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+.loginForm button {
+  margin-top: 1rem;
+  background: var(--bg-clr1);
+  background: var(--bg-clr2);
+  color: aliceblue;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: linear 100ms;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border-color: var(--bg-clr1);
+  font-size: 1em;
+  align-self: center;
+  padding-inline: 1rem;
+}
+.loginForm button:hover {
+  box-shadow: 0 0 5px 2px var(--bg-clr1);
+}
+.loginForm input {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border-color: var(--bg-clr1);
+  font-size: 1.2rem;
+}

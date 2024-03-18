@@ -1,0 +1,9 @@
+.inputBlock {
+  display: flex;
+  flex-direction: column;
+}
+.inputBlock select {
+  font-size: 1em;
+  padding: 0.25rem;
+  border-radius: 5px;
+}

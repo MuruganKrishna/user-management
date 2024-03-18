@@ -2,23 +2,27 @@ import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Login from "./components/login";
 import AppLayout from "./components/layout/AppLayout";
-import Signup from "./components/signup";
+import Signup, { action as signupAction } from "./components/signup";
 import AdminLayout from "./components/layout/admin-layout";
 import Show, { loader as showLoader } from "./components/admin/show";
 import Home from "./components/admin/home";
 import New, { action } from "./components/admin/new";
 import Edit from "./components/admin/edit";
-import UserLayout from "./components/layout/UserLayout";
-import UserHome from "./components/user/home";
-import UserEdit from "./components/user/edit";
-import { getDataFromLocal } from "./utils/http";
+import UserLayout, { checkUserToken } from "./components/layout/user-layout";
+import UserHome, { loader as UserLoader } from "./components/user/home";
+import UserEdit, {
+  loader as userEditLoader,
+  action as userEditAction,
+} from "./components/user/edit";
+import { getDataFromLocal } from "./utils/user";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
+      { index: true, element: <Login /> },
       { path: "login", element: <Login /> },
-      { path: "signup", element: <Signup /> },
+      { path: "signup", element: <Signup />, action: signupAction },
       {
         path: "logout",
         loader: () => {
@@ -59,9 +63,15 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <UserLayout />,
+        loader: checkUserToken,
         children: [
-          { index: true, element: <UserHome /> },
-          { path: "edit", element: <UserEdit /> },
+          { index: true, element: <UserHome />, loader: UserLoader },
+          {
+            path: "edit",
+            element: <UserEdit />,
+            loader: userEditLoader,
+            action: userEditAction,
+          },
         ],
       },
     ],

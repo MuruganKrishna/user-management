@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 10% 90%;
+  /* grid-template-areas: ""; */
+}
+.header {
+  /* grid-area: header; */
+  background-color: aquamarine;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 700;
+}
+.main {
+  /* grid-area: main; */
+  background-color: bisque;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

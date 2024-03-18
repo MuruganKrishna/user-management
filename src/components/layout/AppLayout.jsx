@@ -1,12 +1,8 @@
-import { Outlet } from "react-router";
+import { Outlet, redirect } from "react-router";
+import UserSateProvider from "../../store/userStateProvider";
 
 function AppLayout() {
-  return (
-    <>
-      {/* <h1>App Layout</h1> */}
-      {<Outlet />}
-    </>
-  );
+  return <UserSateProvider>{<Outlet />}</UserSateProvider>;
 }
 
 export default AppLayout;
