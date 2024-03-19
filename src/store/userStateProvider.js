@@ -1,23 +1,43 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
+import { clearUserToken, getCurrentUser } from "../utils/user";
 
 export const UserState = createContext({
-  isUserLoggedIn: false,
   setLoginState: () => {},
+  currentUser: null,
+  isAdmin: false,
+  setIsAdmin: () => {},
+  setCurrentUser: () => {},
 });
 function UserSateProvider({ children }) {
-  const userToken = localStorage.getItem("userToken") ? true : false;
-  const [userState, setUserState] = useState(userToken);
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState();
+  const [isAdmin, setIsAdmin] = useState();
   const setLoginState = (state) => {
-    if (state === "login") {
-      setUserState(true);
-    } else {
-      localStorage.clear();
-      setUserState(false);
+    if (state !== "login") {
+      clearUserToken();
+      setCurrentUser(null);
+      return navigate("/login");
     }
+    return;
   };
+  useEffect(() => {
+    getCurrentUser().then((data) => {
+      if (!data) return navigate("/login");
+      setCurrentUser(data);
+    });
+  }, [navigate]);
 
   return (
-    <UserState.Provider value={{ isUserLoggedIn: userState, setLoginState }}>
+    <UserState.Provider
+      value={{
+        setLoginState,
+        currentUser,
+        isAdmin,
+        setIsAdmin,
+        setCurrentUser,
+      }}
+    >
       {children}
     </UserState.Provider>
   );

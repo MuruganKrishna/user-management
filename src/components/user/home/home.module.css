@@ -8,6 +8,8 @@
   gap: 0.5rem;
   align-items: center;
   min-width: 300px;
+  color: black;
+  box-shadow: 0 0 15px 5px grey;
 }
 .showPage h2 {
   border-bottom: 2px solid rgba(13, 13, 13, 0.2);
@@ -19,8 +21,10 @@
 .showPage img {
   border-radius: 100vh;
   width: 150px;
+  height: 150px;
 }
-.showPage a {
+.showPage button {
+  border: none;
   text-align: center;
   text-decoration: none;
   padding: 0.5rem;
@@ -28,5 +32,8 @@
   font-size: 1em;
   border-radius: 25px;
   font-weight: 500;
+}
+.showPage a {
+  text-decoration: none;
   color: white;
 }

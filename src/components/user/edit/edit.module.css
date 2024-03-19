@@ -6,8 +6,11 @@
   min-width: 300px;
   align-items: center;
   border: 1px solid rgba(13, 13, 13, 0.2);
-  border-radius: 25px;
+  border-radius: 20px;
   padding: 1rem;
+  background: white;
+  color: black;
+  box-shadow: 0 0 15px 5px grey;
 }
 .form {
   display: flex;

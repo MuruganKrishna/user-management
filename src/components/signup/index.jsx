@@ -1,11 +1,13 @@
-import { Form, redirect } from "react-router-dom";
+import { Form, redirect, useActionData } from "react-router-dom";
 import styles from "../login/login.module.css";
 import formStyles from "./signup.module.css";
 import Input from "../UI/input";
 import Button from "../UI/button";
 import { parseFormData } from "parse-nested-form-data";
 import { createUser } from "../../utils/user";
+import { validateSignup } from "../../utils/validate";
 function Signup() {
+  const error = useActionData();
   return (
     <div className={styles.loginPage}>
       <div className={styles.card}>
@@ -18,36 +20,42 @@ function Signup() {
               name="firstName"
               placeholder="John"
               label="First Name"
+              error={error}
             />
             <Input
               type="text"
               name="lastName"
               placeholder="Doe"
               label="Last Name"
+              error={error}
             />
             <Input
               type="text"
               name="middleName"
               placeholder="Junior"
               label="Middle Name"
+              error={error}
             />
             <Input
               type="email"
               name="email"
               placeholder="John@email.com"
               label="Email"
+              error={error}
             />
             <Input
               type="password"
               name="password"
               placeholder="John@123"
               label="Password"
+              error={error}
             />
             <Input
               type="password"
               name="confirmPassword"
               placeholder="John@123"
               label="Confirm Password"
+              error={error}
             />
           </div>
           <Button>Sign Up</Button>
@@ -58,9 +66,11 @@ function Signup() {
 }
 
 export default Signup;
-export const action = async ({ request, params }) => {
+export const action = async ({ request }) => {
   const formData = parseFormData(await request.formData());
-  const user = await createUser(formData);
-  localStorage.setItem("userToken", user.data.id);
+  const { errors, isError } = validateSignup(formData);
+  if (isError) return errors;
+  debugger;
+  await createUser(formData);
   return redirect("/user");
 };

@@ -2,13 +2,16 @@ import styles from "./show.module.css";
 import { getUser } from "../../../utils/user";
 import { getUserAddress } from "../../../utils/address";
 import { useLoaderData } from "react-router";
+import { Link } from "react-router-dom";
 function Show() {
   const { user, address } = useLoaderData();
   return (
     <>
       <div className={styles.info}>
         <h2>Personel Information</h2>
-        {/* <p>saving information</p> */}
+        <button>
+          <Link to="..">Back</Link>
+        </button>
       </div>
       <div className={styles.photoContainer}>
         <div className={styles.profilePhoto}>
@@ -36,11 +39,11 @@ function Show() {
         </div>
         <div>
           <p>City</p>
-          <p className={styles.userValue}>{address.city}</p>
+          <p className={styles.userValue}>{address?.city}</p>
         </div>
         <div>
           <p>Zipcode</p>
-          <p className={styles.userValue}>{address.zipcode}</p>
+          <p className={styles.userValue}>{address?.zipcode}</p>
         </div>
       </div>
     </>

@@ -1,56 +1,35 @@
 import styles from "../show/show.module.css";
-import userProfile from "../../../assets/images/user-icon.png";
+import { Link, redirect, useLoaderData } from "react-router-dom";
+import UserForm from "../form";
+import { getUser, updateData } from "../../../utils/user";
+import { getUserAddress } from "../../../utils/address";
+import { parseFormData } from "parse-nested-form-data";
 function Edit() {
+  const { user, address } = useLoaderData();
   return (
     <>
       <div className={styles.info}>
         <h2>Personel Information</h2>
-        <p>saving information</p>
+        <button>
+          <Link to="..">Back</Link>
+        </button>
       </div>
-      <div className={styles.photoContainer}>
-        <div className={styles.profilePhoto}>
-          <div className={styles.userProfile}>
-            {/* <div></div> */}
-            <img src={userProfile} alt="user Profile" />
-          </div>
-        </div>
-      </div>
-      <div className={styles.userInfo}>
-        <div>
-          <p>First Name</p>
-          <p className={styles.userValue}>Araft</p>
-        </div>
-        <div>
-          <p>Last Name</p>
-          <p className={styles.userValue}>Ross</p>
-        </div>
-        <div>
-          <p>Middle Name</p>
-          <p className={styles.userValue}>NOthin</p>
-        </div>
-        <div>
-          <p>Email</p>
-          <p className={styles.userValue}>email@email.com</p>
-        </div>
-        <div>
-          <p>Phone Number</p>
-          <p className={styles.userValue}>+91 9080909090</p>
-        </div>
-        <div>
-          <p>Country</p>
-          <p className={styles.userValue}>India</p>
-        </div>
-        <div>
-          <p>City</p>
-          <p className={styles.userValue}>Chennai</p>
-        </div>
-        <div>
-          <p>Zipcode</p>
-          <p className={styles.userValue}>605201</p>
-        </div>
-      </div>
+      <UserForm user={user} address={address} />
     </>
   );
 }
 
 export default Edit;
+export const loader = async ({ params }) => {
+  const user = await getUser(params.id);
+  const address = await getUserAddress(params.id);
+  return { user, address };
+};
+export const action = async ({ request }) => {
+  const formData = parseFormData(await request.formData());
+  debugger;
+  const user = await updateData(formData.user, "users");
+  const address = await updateData(formData.address, "addresses");
+  console.log({ user, address });
+  return redirect("..");
+};

@@ -7,7 +7,7 @@ import {
 import Select from "../../UI/select";
 import Input from "../../UI/input";
 import addressStyle from "./address.module.css";
-function AddressInfo({ styles, address }) {
+function AddressInfo({ styles, address = {} }) {
   const [cities, setCities] = useState([address.city]);
   const handleStateSelect = (e) => {
     const updatedCities = statesWithCities[e.target.value];

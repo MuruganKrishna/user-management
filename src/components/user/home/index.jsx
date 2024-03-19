@@ -1,11 +1,16 @@
-import { useLoaderData } from "react-router";
+import { useLoaderData, useNavigation } from "react-router";
 import { getCurrentUser } from "../../../utils/user";
 import styles from "./home.module.css";
 import userIcon from "../../../assets/images/user-icon.png";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserState } from "../../../store/userStateProvider";
 function Home() {
+  const { setCurrentUser } = useContext(UserState);
   const user = useLoaderData();
-  console.log(user);
+  setCurrentUser(user);
+  const { state } = useNavigation();
+  const isDisabled = state === "loading";
   return (
     <div className={styles.showPage}>
       <h2>
@@ -19,7 +24,9 @@ function Home() {
         {user.firstName} {user.lastName}
       </h3>
       <h3>{user.email}</h3>
-      <Link to="edit">Edit User</Link>
+      <button disabled={isDisabled}>
+        <Link to="edit">{isDisabled ? "Loading..." : "Edit User"}</Link>
+      </button>
     </div>
   );
 }

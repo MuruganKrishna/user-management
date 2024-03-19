@@ -11,6 +11,7 @@ export const setUserToLocal = (user) => {
         }
         prevUserData.push(user);
         localStorage.setItem("users", JSON.stringify(prevUserData));
+        setUserToken(user.id);
         resolve(user);
       } catch (e) {
         reject(e);
@@ -66,7 +67,20 @@ export const updateData = async (updatedDatum, dataType) => {
     }
   });
 };
-export const deleteUser = async (id) => {};
+export const deleteDataFromLocal = async (id, type) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(async () => {
+      try {
+        const data = await getDataFromLocal(type);
+        const filteredData = data.filter((datum) => datum.id !== id);
+        localStorage.setItem(type, JSON.stringify(filteredData));
+        resolve(filteredData);
+      } catch (e) {
+        reject(e);
+      }
+    }, 100);
+  });
+};
 export const getUser = async (id) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -87,10 +101,17 @@ export const getCurrentUser = async () => {
       if (user) {
         resolve(user);
       } else {
-        throw new Error({ message: "No user Found" });
+        clearUserToken();
+        resolve(null);
+        // throw new Error({ message: "No user Found" });
       }
     } catch (e) {
       reject(e);
     }
   });
 };
+export const setUserToken = (token) => {
+  localStorage.setItem("userToken", token);
+};
+export const clearUserToken = () => localStorage.removeItem("userToken");
+export const getUserToken = () => localStorage.getItem("userToken");
