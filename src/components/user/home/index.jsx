@@ -5,7 +5,6 @@ import userIcon from "../../../assets/images/user-icon.png";
 import { Link } from "react-router-dom";
 function Home() {
   const user = useLoaderData();
-  console.log(user);
   return (
     <div className={styles.showPage}>
       <h2>

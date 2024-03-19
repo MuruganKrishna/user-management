@@ -1,6 +1,10 @@
 import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Login from "./components/login";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router-dom";
+import Login, { action as loginAction } from "./components/login";
 import AppLayout from "./components/layout/AppLayout";
 import Signup, { action as signupAction } from "./components/signup";
 import AdminLayout from "./components/layout/admin-layout";
@@ -8,7 +12,7 @@ import Show, { loader as showLoader } from "./components/admin/show";
 import Home from "./components/admin/home";
 import New, { action } from "./components/admin/new";
 import Edit from "./components/admin/edit";
-import UserLayout, { checkUserToken } from "./components/layout/user-layout";
+import UserLayout from "./components/layout/user-layout";
 import UserHome, { loader as UserLoader } from "./components/user/home";
 import UserEdit, {
   loader as userEditLoader,
@@ -21,13 +25,13 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { index: true, element: <Login /> },
-      { path: "login", element: <Login /> },
+      { path: "login", element: <Login />, action: loginAction },
       { path: "signup", element: <Signup />, action: signupAction },
       {
         path: "logout",
         loader: () => {
-          console.log("logged out");
-          return null;
+          localStorage.setItem("userToken", undefined);
+          return redirect("/login");
         },
       },
       {
@@ -63,7 +67,6 @@ const router = createBrowserRouter([
       {
         path: "user",
         element: <UserLayout />,
-        loader: checkUserToken,
         children: [
           { index: true, element: <UserHome />, loader: UserLoader },
           {

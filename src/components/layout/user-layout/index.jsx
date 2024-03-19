@@ -1,15 +1,16 @@
-import { Outlet, redirect } from "react-router";
+import { Outlet } from "react-router";
 
 import styles from "./user-layout.module.css";
 import { UserState } from "../../../store/userStateProvider";
 import { useContext } from "react";
 function UserLayout() {
-  const { isUserLoggedIn, setLoginState } = useContext(UserState);
+  const { setLoginState } = useContext(UserState);
+  const userToken = localStorage.getItem("userToken");
   return (
     <div className={styles.container}>
       <header className={styles.header}>
-        User Management{" "}
-        {isUserLoggedIn && (
+        User Management
+        {userToken && (
           <span>
             <button onClick={() => setLoginState("logout")}>Logout</button>
           </span>
@@ -23,9 +24,3 @@ function UserLayout() {
 }
 
 export default UserLayout;
-export const checkUserToken = () => {
-  if (localStorage.getItem("userToken")) {
-    return redirect("/login");
-  }
-  return null;
-};

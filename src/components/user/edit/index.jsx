@@ -70,9 +70,8 @@ function Edit() {
 export default Edit;
 export const action = async ({ params, request }) => {
   const formData = parseFormData(await request.formData());
-  const user = await updateData(formData.user, "users");
-  const address = await updateData(formData.address, "addresses");
-  console.log({ user, address });
+  await updateData(formData.user, "users");
+  await updateData(formData.address, "addresses");
   // const currentUser =
   // async () => {user:await getCurrentUser(),address:await get}
   return redirect("/user");

@@ -53,6 +53,5 @@ export const loader = async ({ params, request }) => {
     user: await getUser(params.id),
     address: await getUserAddress(params.id),
   };
-  console.log(data);
   return data;
 };

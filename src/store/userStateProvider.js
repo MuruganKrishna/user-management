@@ -1,23 +1,19 @@
-import { createContext, useState } from "react";
+import { createContext } from "react";
+import { useNavigate } from "react-router";
 
 export const UserState = createContext({
-  isUserLoggedIn: false,
   setLoginState: () => {},
 });
 function UserSateProvider({ children }) {
-  const userToken = localStorage.getItem("userToken") ? true : false;
-  const [userState, setUserState] = useState(userToken);
+  const navigate = useNavigate();
   const setLoginState = (state) => {
-    if (state === "login") {
-      setUserState(true);
-    } else {
-      localStorage.clear();
-      setUserState(false);
+    if (state !== "login") {
+      navigate("/logout");
     }
   };
 
   return (
-    <UserState.Provider value={{ isUserLoggedIn: userState, setLoginState }}>
+    <UserState.Provider value={{ setLoginState }}>
       {children}
     </UserState.Provider>
   );
