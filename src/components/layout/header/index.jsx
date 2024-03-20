@@ -1,14 +1,15 @@
 import styles from "./header.module.css";
 import hmb from "../../../assets/images/hambr-icon.png";
 import searchIcon from "../../../assets/images/search-icon.png";
-import gearIcon from "../../../assets/images/gear.png";
+import logoutIcon from "../../../assets/images/logout.png";
 import { useContext } from "react";
 import { UserState } from "../../../store/userStateProvider";
+import ShowUserImage from "../../shared/user-image";
+import { Link } from "react-router-dom";
 function Header() {
   const { currentUser } = useContext(UserState);
   const userName =
     currentUser && `${currentUser.firstName} ${currentUser.lastName}`;
-  const userFirstLetter = currentUser && currentUser.firstName[0];
   return (
     <div className={styles.header}>
       <div className={styles.hambrg}>
@@ -19,11 +20,13 @@ function Header() {
         <img src={searchIcon} alt="search" />
       </div>
       <div className={styles.userIcon}>
-        <p>{userFirstLetter}</p>
+        <ShowUserImage userImage={currentUser?.userImage} />
       </div>
       <div className={styles.userName}>{userName}</div>
       <div className={styles.setting}>
-        <img src={gearIcon} alt="settings" />
+        <Link to="/logout">
+          <img src={logoutIcon} alt="settings" />
+        </Link>
       </div>
     </div>
   );

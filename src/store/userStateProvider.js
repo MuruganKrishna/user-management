@@ -8,6 +8,7 @@ export const UserState = createContext({
   isAdmin: false,
   setIsAdmin: () => {},
   setCurrentUser: () => {},
+  updateCurrentLoginUser: () => {},
 });
 function UserSateProvider({ children }) {
   const navigate = useNavigate();
@@ -21,12 +22,16 @@ function UserSateProvider({ children }) {
     }
     return;
   };
-  useEffect(() => {
+  const updateCurrentLoginUser = () => {
     getCurrentUser().then((data) => {
+      if (data === undefined) return navigate("/signup");
       if (!data) return navigate("/login");
       setCurrentUser(data);
       setIsAdmin(data.role === "admin");
     });
+  };
+  useEffect(() => {
+    updateCurrentLoginUser();
   }, [navigate]);
 
   return (
@@ -37,6 +42,7 @@ function UserSateProvider({ children }) {
         isAdmin,
         setIsAdmin,
         setCurrentUser,
+        updateCurrentLoginUser,
       }}
     >
       {children}

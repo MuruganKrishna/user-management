@@ -1,4 +1,10 @@
-import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
+import {
+  Form,
+  Link,
+  redirect,
+  useActionData,
+  useNavigation,
+} from "react-router-dom";
 import styles from "./login.module.css";
 import Input from "../UI/input";
 import Button from "../UI/button";
@@ -25,6 +31,7 @@ function Login() {
             {isDisabled ? "Submitting" : "Login"}
           </Button>
         </Form>
+        <Link to="/signup">for register</Link>
       </div>
     </div>
   );

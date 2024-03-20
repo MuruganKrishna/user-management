@@ -1,5 +1,9 @@
 import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  redirect,
+} from "react-router-dom";
 import Login, { action as loginAction } from "./components/login";
 import AppLayout from "./components/layout/AppLayout";
 import Signup, { action as signupAction } from "./components/signup";
@@ -17,7 +21,7 @@ import UserEdit, {
   loader as userEditLoader,
   action as userEditAction,
 } from "./components/user/edit";
-import { getDataFromLocal } from "./utils/user";
+import { clearUserToken, getDataFromLocal } from "./utils/user";
 import ProtectedRoute, { ProtectedUserRoute } from "./utils/protectedRoute";
 const router = createBrowserRouter([
   {
@@ -31,7 +35,8 @@ const router = createBrowserRouter([
         path: "logout",
         loader: () => {
           console.log("logged out");
-          return null;
+          clearUserToken();
+          return redirect("/login");
         },
       },
       {

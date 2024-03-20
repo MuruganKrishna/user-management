@@ -33,10 +33,3 @@ function UserLayout() {
 }
 
 export default UserLayout;
-// export const checkUserToken = () => {
-//   debugger;
-//   if (!localStorage.getItem("userToken")) {
-//     return redirect("/login");
-//   }
-//   return null;
-// };

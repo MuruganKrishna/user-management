@@ -3,15 +3,15 @@ import { createUser } from "../../../utils/user";
 import { parseFormData } from "parse-nested-form-data";
 import { createAddress } from "../../../utils/address";
 import UserForm from "../form";
+import BackButton from "../../shared/back-button";
+import styles from "../show/show.module.css";
 
 function New() {
   return (
     <>
-      <div>
-        <h2>User Creation</h2>
-        <button>
-          <Link to="..">Back</Link>
-        </button>
+      <div className={styles.info}>
+        <h2>Personel Information</h2>
+        <BackButton />
       </div>
       <UserForm />
     </>

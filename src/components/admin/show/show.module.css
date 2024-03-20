@@ -15,14 +15,6 @@
   display: flex;
   justify-content: center;
 }
-.photoContainer img {
-  width: 150px;
-  height: 150px;
-  border: 1px solid black;
-  padding: 0.2rem;
-  border-radius: 100vh;
-  margin-bottom: 0.25rem;
-}
 .userInfo {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -41,4 +33,10 @@
   border-radius: 25px;
   padding: 1rem;
   margin-top: 0.5rem;
+}
+@media (max-width: 576px) {
+}
+@media (max-width: 990px) {
+}
+@media (max-width: 1200px) {
 }

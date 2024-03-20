@@ -5,18 +5,18 @@ export const setUserToLocal = (user) => {
     setTimeout(() => {
       try {
         user.id = `${Date.now()}-${Math.ceil(Math.random() * 1000)}`;
+        user.role = user.role ? user.role : "user";
         const prevUserData = JSON.parse(localStorage.getItem("users") || "[]");
         if (prevUserData.length === 0) {
           user.role = "admin";
         }
         prevUserData.push(user);
         localStorage.setItem("users", JSON.stringify(prevUserData));
-        setUserToken(user.id);
         resolve(user);
       } catch (e) {
         reject(e);
       }
-    }, 1000);
+    }, 300);
   });
 };
 export const getDataFromLocal = (param) => {
@@ -28,7 +28,7 @@ export const getDataFromLocal = (param) => {
       } catch (e) {
         reject(e);
       }
-    }, 1000);
+    }, 300);
   });
 };
 export const createUser = async (user) => {
@@ -36,10 +36,11 @@ export const createUser = async (user) => {
     return {
       message: "User Date Created successfully",
       data: await setUserToLocal(user),
+      status: 201,
     };
   } catch (e) {
     console.log(e);
-    return { message: e };
+    return { message: e, status: 500 };
   }
 };
 export const updateData = async (updatedDatum, dataType) => {
@@ -78,7 +79,7 @@ export const deleteDataFromLocal = async (id, type) => {
       } catch (e) {
         reject(e);
       }
-    }, 100);
+    }, 300);
   });
 };
 export const getUser = async (id) => {
@@ -97,6 +98,9 @@ export const getCurrentUser = async () => {
     try {
       const userToken = localStorage.getItem("userToken");
       const users = await getDataFromLocal("users");
+      if (users.length <= 0) {
+        resolve(undefined);
+      }
       const user = users.filter((user) => user.id === userToken)[0];
       if (user) {
         resolve(user);

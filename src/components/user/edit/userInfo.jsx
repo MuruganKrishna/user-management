@@ -1,6 +1,6 @@
 import Input from "../../UI/input";
 import styles from "./address.module.css";
-function UserInfo({ user }) {
+function UserInfo({ user, error }) {
   return (
     <>
       <h3>Personel Info</h3>
@@ -23,6 +23,7 @@ function UserInfo({ user }) {
           placeholder="John"
           defaultValue={user.firstName}
           label="First Name"
+          error={error}
         />
         <Input
           type="text"
@@ -30,6 +31,7 @@ function UserInfo({ user }) {
           placeholder="Doe"
           defaultValue={user.lastName}
           label="Last Name"
+          error={error}
         />
         <Input
           type="text"
@@ -37,6 +39,7 @@ function UserInfo({ user }) {
           placeholder="Junior"
           defaultValue={user.middleName}
           label="Middle Name"
+          error={error}
         />
         <Input
           type="email"
@@ -44,6 +47,7 @@ function UserInfo({ user }) {
           placeholder="email@email.com"
           defaultValue={user.email}
           label="Email"
+          error={error}
         />
       </div>
     </>

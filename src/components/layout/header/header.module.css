@@ -38,10 +38,15 @@
 
 .userIcon {
   flex-grow: 1;
-  background-color: #f1ab40;
-  border-radius: 100vh;
   font-size: 3rem;
   text-align: center;
+}
+.userIcon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100vh;
+  border: 1px solid black;
+  padding: 2px;
 }
 .userName {
   flex-grow: 3;
@@ -55,4 +60,13 @@
 }
 .setting img {
   width: 25px;
+  cursor: pointer;
+}
+@media (max-width: 576px) {
+  .search {
+    display: none;
+  }
+  .hambrg {
+    display: none;
+  }
 }

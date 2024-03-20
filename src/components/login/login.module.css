@@ -3,8 +3,8 @@
   --bg-clr2: radial-gradient(
     circle,
     rgba(2, 0, 36, 1) 0%,
-    rgba(9, 47, 121, 0.9697128851540616) 42%,
-    rgba(0, 212, 255, 1) 100%
+    rgb(27 25 25 / 97%) 42%,
+    rgb(180 187 189) 100%
   );
   background: var(--bg-clr1);
   background: var(--bg-clr2);
@@ -48,6 +48,14 @@
 }
 .loginForm input {
   padding: 0.5rem;
+}
+.loginPage a {
+  color: black;
+  text-align: end;
+  text-decoration: none;
+  float: right;
+  margin-top: 1rem;
+  font-weight: 700;
 }
 /* @media (max-width: 768px) {
   .card {

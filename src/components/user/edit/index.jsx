@@ -2,6 +2,7 @@ import {
   Form,
   Link,
   redirect,
+  useActionData,
   useLoaderData,
   useNavigation,
 } from "react-router-dom";
@@ -13,10 +14,12 @@ import UserInfo from "./userInfo";
 import { getUserAddress } from "../../../utils/address";
 import { getCurrentUser, updateData } from "../../../utils/user";
 import UserImageUpload from "./userImageUpload";
+import { validateEdit } from "../../../utils/validate";
 
 function Edit() {
   const { state } = useNavigation();
   const { user, address } = useLoaderData();
+  const actionData = useActionData();
   let buttonName = "Save";
   if (state === "loading") buttonName = "Loading";
   if (state === "submitting") buttonName = "Submitting";
@@ -25,8 +28,12 @@ function Edit() {
       <h2>Edit User</h2>
       <Form method="post" className={styles.form}>
         <UserImageUpload user={user} />
-        <UserInfo user={user} />
-        <AddressInfo styles={styles} address={address} />
+        <UserInfo user={user} error={actionData && actionData.userError} />
+        <AddressInfo
+          styles={styles}
+          address={address}
+          error={actionData && actionData.addressError}
+        />
         <div className={styles.btnGroup}>
           <Button disabled={state === "submitting" || state === "loading"}>
             {buttonName}
@@ -43,11 +50,13 @@ function Edit() {
 export default Edit;
 export const action = async ({ params, request }) => {
   const formData = parseFormData(await request.formData());
-  const user = await updateData(formData.user, "users");
-  const address = await updateData(formData.address, "addresses");
-  console.log({ user, address });
-  // const currentUser =
-  // async () => {user:await getCurrentUser(),address:await get}
+  const { addressError, userError, isError } = validateEdit(
+    formData.user,
+    formData.address
+  );
+  if (isError) return { addressError, userError };
+  await updateData(formData.user, "users");
+  await updateData(formData.address, "addresses");
   return redirect("/user");
 };
 export const loader = async () => {

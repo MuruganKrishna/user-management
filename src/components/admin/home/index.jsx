@@ -3,18 +3,21 @@ import styles from "./home.module.css";
 import { Link } from "react-router-dom";
 import { deleteDataFromLocal } from "../../../utils/user";
 import { getUserAddress } from "../../../utils/address";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import deleteIcon from "../../../assets/images/delete-icon.png";
 import editIcon from "../../../assets/images/edit-icon.png";
 import showIcon from "../../../assets/images/show-icon.png";
 import defaultUserImg from "../../../assets/images/user-icon.png";
+import UseCurrentUser from "../../../hooks/useCurrenUser";
+import { UserState } from "../../../store/userStateProvider";
 function Home() {
   const [users, setUsers] = useState(useLoaderData());
+  const { currentUser } = useContext(UserState);
+  UseCurrentUser();
   const handleDelete = async (userId) => {
     const confirm = window.confirm("Do you realy want to delete");
     if (confirm) {
       const address = await getUserAddress(userId);
-
       if (address) await deleteDataFromLocal(address?.id || 0, "addresses");
       const updatedUser = await deleteDataFromLocal(userId, "users");
       console.log("error in address", updatedUser);
@@ -68,9 +71,11 @@ function Home() {
                   <Link to={`${user.id}/edit`}>
                     <img src={editIcon} alt="edit" />
                   </Link>
-                  <button href="" onClick={() => handleDelete(user.id)}>
-                    <img src={deleteIcon} alt="delete" />
-                  </button>
+                  {currentUser && currentUser.id !== user.id && (
+                    <button href="" onClick={() => handleDelete(user.id)}>
+                      <img src={deleteIcon} alt="delete" />
+                    </button>
+                  )}
                 </p>
               </div>
             ))}

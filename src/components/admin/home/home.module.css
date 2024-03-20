@@ -57,6 +57,9 @@
   text-decoration: none;
   display: inline-block;
 }
+.card p.action {
+  text-wrap: initial;
+}
 .action img {
   height: 30px;
   width: 30px;
@@ -69,4 +72,29 @@
 }
 .action a {
   margin-inline: 0.5rem;
+}
+@media (max-width: 576px) {
+  .cardHeader :nth-child(1),
+  .cardHeader :nth-child(4),
+  .cardHeader :nth-child(5),
+  .cardHeader :nth-child(6) {
+    display: none;
+  }
+  .card p:nth-child(1) {
+    display: none;
+  }
+  .card :nth-child(4),
+  .card :nth-child(5),
+  .card :nth-child(6) {
+    display: none;
+  }
+}
+@media (max-width: 990px) {
+  .card p:nth-child(5),
+  .cardHeader :nth-child(5) {
+    display: none;
+  }
+  .card :nth-child(5) {
+    display: flex;
+  }
 }

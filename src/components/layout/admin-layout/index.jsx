@@ -5,7 +5,7 @@ import SideBar from "../sideBar";
 function AdminLayout() {
   return (
     <div className={styles.AdminLayout}>
-      <SideBar />
+      {/* <SideBar /> */}
       <Header />
       <div className={styles.main}>
         <Outlet />

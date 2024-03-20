@@ -49,3 +49,22 @@
   align-items: center;
   color: whitesmoke;
 }
+@media (max-width: 576px) {
+  .header {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .header h3 {
+    flex: 2;
+  }
+  .header span {
+    flex: 1;
+  }
+  .header button {
+    font-size: 0.7rem;
+    padding: 0.2rem;
+  }
+  .main {
+    font-size: 0.7rem;
+  }
+}

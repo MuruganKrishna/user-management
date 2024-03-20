@@ -3,13 +3,11 @@ import { getCurrentUser } from "../../../utils/user";
 import styles from "./home.module.css";
 import userIcon from "../../../assets/images/user-icon.png";
 import { Link } from "react-router-dom";
-import { useContext, useEffect } from "react";
-import { UserState } from "../../../store/userStateProvider";
+import UseCurrentUser from "../../../hooks/useCurrenUser";
 function Home() {
-  const { setCurrentUser } = useContext(UserState);
   const user = useLoaderData();
-  useEffect(() => setCurrentUser(user), [user]);
   // setCurrentUser(user);
+  UseCurrentUser();
   const { state } = useNavigation();
   const isDisabled = state === "loading";
   return (

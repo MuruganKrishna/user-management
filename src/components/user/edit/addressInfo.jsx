@@ -7,7 +7,7 @@ import {
 import Select from "../../UI/select";
 import Input from "../../UI/input";
 import addressStyle from "./address.module.css";
-function AddressInfo({ styles, address = {} }) {
+function AddressInfo({ styles, address = {}, error }) {
   const [cities, setCities] = useState([address.city]);
   const handleStateSelect = (e) => {
     const updatedCities = statesWithCities[e.target.value];
@@ -24,6 +24,7 @@ function AddressInfo({ styles, address = {} }) {
           placeholder="no:1,street1..."
           label="Address Line 1"
           defaultValue={address.addressLine1}
+          error={error}
         />
         <Input
           type="text"
@@ -31,6 +32,7 @@ function AddressInfo({ styles, address = {} }) {
           placeholder="no:1,street1..."
           label="Address Line 2"
           defaultValue={address.addressLine2}
+          error={error}
         />
         <Select
           options={transformToOptions(states)}
@@ -38,12 +40,14 @@ function AddressInfo({ styles, address = {} }) {
           name="address.state"
           label="State"
           defaultValue={address.state}
+          error={error}
         />
         <Select
           options={transformToOptions(cities)}
           name="address.city"
           label="City"
           defaultValue={address.city}
+          error={error}
         />
         <Input
           type="number"
@@ -51,6 +55,7 @@ function AddressInfo({ styles, address = {} }) {
           placeholder="600028"
           label="Pincode"
           defaultValue={address.zipcode}
+          error={error}
         />
       </div>
     </>

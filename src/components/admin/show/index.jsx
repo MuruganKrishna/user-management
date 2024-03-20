@@ -2,17 +2,15 @@ import styles from "./show.module.css";
 import { getUser } from "../../../utils/user";
 import { getUserAddress } from "../../../utils/address";
 import { redirect, useLoaderData } from "react-router";
-import { Link } from "react-router-dom";
 import ShowUserImage from "../../shared/user-image";
+import BackButton from "../../shared/back-button";
 function Show() {
   const { user, address } = useLoaderData();
   return (
     <>
       <div className={styles.info}>
         <h2>Personel Information</h2>
-        <button>
-          <Link to="..">Back</Link>
-        </button>
+        <BackButton />
       </div>
       <div className={styles.photoContainer}>
         <ShowUserImage userImage={user.userImage} />
@@ -53,7 +51,6 @@ export const loader = async ({ params, request }) => {
     user: await getUser(params.id),
     address: await getUserAddress(params.id),
   };
-  debugger;
   if (!data.user) {
     return redirect("users");
   }

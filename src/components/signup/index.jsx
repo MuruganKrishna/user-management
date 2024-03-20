@@ -1,10 +1,10 @@
-import { Form, redirect, useActionData } from "react-router-dom";
+import { Form, Link, redirect, useActionData } from "react-router-dom";
 import styles from "../login/login.module.css";
 import formStyles from "./signup.module.css";
 import Input from "../UI/input";
 import Button from "../UI/button";
 import { parseFormData } from "parse-nested-form-data";
-import { createUser } from "../../utils/user";
+import { createUser, setUserToken } from "../../utils/user";
 import { validateSignup } from "../../utils/validate";
 function Signup() {
   const error = useActionData();
@@ -60,6 +60,7 @@ function Signup() {
           </div>
           <Button>Sign Up</Button>
         </Form>
+        <Link to="/login">for Login</Link>
       </div>
     </div>
   );
@@ -70,7 +71,8 @@ export const action = async ({ request }) => {
   const formData = parseFormData(await request.formData());
   const { errors, isError } = validateSignup(formData);
   if (isError) return errors;
-  debugger;
-  await createUser(formData);
+  const { status, data, message } = await createUser(formData);
+  if (status !== 201) return alert(message);
+  if (status === 201) setUserToken(data.id);
   return redirect("/user");
 };

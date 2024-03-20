@@ -1,5 +1,5 @@
 import styles from "../input/input.module.css";
-function Select({ options, label, className, ...props }) {
+function Select({ options, error, label, className, ...props }) {
   return (
     <div className={styles.inputBlock}>
       <label htmlFor={props.name}>{label}</label>
@@ -10,6 +10,7 @@ function Select({ options, label, className, ...props }) {
           </option>
         ))}
       </select>
+      {error && error[props.name] && <p>{error[props.name]}</p>}
     </div>
   );
 }

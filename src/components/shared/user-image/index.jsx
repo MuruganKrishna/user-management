@@ -1,11 +1,24 @@
 import defaultImage from "../../../assets/images/user-icon.png";
+import imgStyle from "./user-image.module.css";
 function ShowUserImage({ userImage, ...props }) {
   return (
     <>
       {userImage && (
-        <img src={`/demo-images/${userImage}`} alt="userImage" {...props} />
+        <img
+          className={imgStyle.img}
+          src={`/demo-images/${userImage}`}
+          alt="userImage"
+          {...props}
+        />
       )}
-      {!userImage && <img src={defaultImage} alt="userImage" {...props} />}
+      {!userImage && (
+        <img
+          className={imgStyle.img}
+          src={defaultImage}
+          alt="userImage"
+          {...props}
+        />
+      )}
     </>
   );
 }
