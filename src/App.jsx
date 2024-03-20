@@ -36,10 +36,10 @@ const router = createBrowserRouter([
       },
       {
         path: "admins",
-        element: <AdminLayout />,
         children: [
           {
             path: ":id",
+            element: <AdminLayout />,
             children: [
               {
                 index: true,
@@ -48,6 +48,7 @@ const router = createBrowserRouter([
                     <Show />
                   </ProtectedRoute>
                 ),
+                loader: showLoader,
               },
               {
                 path: "users",

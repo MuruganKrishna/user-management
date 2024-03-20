@@ -1,10 +1,13 @@
-import { redirect, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import styles from "./home.module.css";
 import { Link } from "react-router-dom";
-import Button from "../../UI/button";
 import { deleteDataFromLocal } from "../../../utils/user";
 import { getUserAddress } from "../../../utils/address";
 import { useState } from "react";
+import deleteIcon from "../../../assets/images/delete-icon.png";
+import editIcon from "../../../assets/images/edit-icon.png";
+import showIcon from "../../../assets/images/show-icon.png";
+import defaultUserImg from "../../../assets/images/user-icon.png";
 function Home() {
   const [users, setUsers] = useState(useLoaderData());
   const handleDelete = async (userId) => {
@@ -20,10 +23,10 @@ function Home() {
   };
   return (
     <>
-      <div>
+      {/* <div>
         YOU ARE HERE {">"} <Link to={"../../"}>Admin</Link> {">"}{" "}
         <Link to={"../"}>Users</Link>
-      </div>
+      </div> */}
       <div className={styles.cardsContainer}>
         <h2>User management</h2>
         <Link to={"new"} className={styles.new}>
@@ -46,7 +49,11 @@ function Home() {
                 <p>{index + 1}</p>
                 <p>
                   <img
-                    src={`/demo-images/${user.userImage}`}
+                    src={
+                      user.userImage
+                        ? `/demo-images/${user.userImage}`
+                        : defaultUserImg
+                    }
                     alt="user Profile"
                   />
                 </p>
@@ -54,22 +61,16 @@ function Home() {
                 <p>{user.lastName}</p>
                 <p>{user.email}</p>
                 <p>{user.role}</p>
-                <p>
-                  <Link style={{ marginInline: "0.5rem" }} to={user.id}>
-                    Show
+                <p className={styles.action}>
+                  <Link to={user.id}>
+                    <img src={showIcon} alt="show" />
                   </Link>
-                  <Link
-                    style={{ marginInline: "0.5rem" }}
-                    to={`${user.id}/edit`}
-                  >
-                    Edit
+                  <Link to={`${user.id}/edit`}>
+                    <img src={editIcon} alt="edit" />
                   </Link>
-                  <Button
-                    style={{ marginInline: "0.5rem" }}
-                    onClick={() => handleDelete(user.id)}
-                  >
-                    Delete
-                  </Button>
+                  <button href="" onClick={() => handleDelete(user.id)}>
+                    <img src={deleteIcon} alt="delete" />
+                  </button>
                 </p>
               </div>
             ))}

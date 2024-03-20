@@ -25,6 +25,7 @@ function UserSateProvider({ children }) {
     getCurrentUser().then((data) => {
       if (!data) return navigate("/login");
       setCurrentUser(data);
+      setIsAdmin(data.role === "admin");
     });
   }, [navigate]);
 

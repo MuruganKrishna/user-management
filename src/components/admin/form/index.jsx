@@ -12,7 +12,9 @@ import Input from "../../UI/input";
 import UserImageUpload from "../../user/edit/userImageUpload";
 
 function UserForm({ user = {}, address = {} }) {
-  const [cities, setCities] = useState(["Please Select State First"]);
+  const [cities, setCities] = useState([
+    address.city || "Please Select the city",
+  ]);
   const handleStateSelect = (e) => {
     const updatedCities = statesWithCities[e.target.value];
     setCities(updatedCities);
@@ -72,6 +74,12 @@ function UserForm({ user = {}, address = {} }) {
           type="hidden"
           name="address.id"
           defaultValue={address.id}
+          style={{ display: "none" }}
+        />
+        <input
+          type="hidden"
+          name="address.userId"
+          defaultValue={user.id}
           style={{ display: "none" }}
         />
         <Input

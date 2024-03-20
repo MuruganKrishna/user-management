@@ -1,8 +1,7 @@
 import { useRef, useState } from "react";
-import userDefaultImage from "../../../assets/images/user-icon.png";
+import ShowUserImage from "../../shared/user-image";
 function UserImageUpload({ user = {} }) {
   const imgRef = useRef();
-  debugger;
   const [userImage, setUserImage] = useState(user.userImage || "");
   const handleImage = () => {
     imgRef.current.click();
@@ -12,22 +11,18 @@ function UserImageUpload({ user = {} }) {
   };
   return (
     <>
-      {userImage && (
-        <img
-          src={`/demo-images/${userImage}`}
-          alt="userImage"
-          onClick={handleImage}
-        />
-      )}
-      {!userImage && (
-        <img src={userDefaultImage} alt="defaultImage" onClick={handleImage} />
-      )}
+      <ShowUserImage userImage={userImage} onClick={handleImage} />
       <input
         ref={imgRef}
         style={{ display: "none" }}
         type="file"
-        name="user.userImage"
         onChange={handleImageChange}
+      />
+      <input
+        type="hidden"
+        style={{ display: "none" }}
+        name="user.userImage"
+        value={userImage}
       />
     </>
   );

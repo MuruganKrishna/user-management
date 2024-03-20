@@ -57,3 +57,16 @@
   text-decoration: none;
   display: inline-block;
 }
+.action img {
+  height: 30px;
+  width: 30px;
+  border-radius: initial;
+}
+.action button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.action a {
+  margin-inline: 0.5rem;
+}

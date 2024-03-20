@@ -2,7 +2,13 @@ import styles from "./header.module.css";
 import hmb from "../../../assets/images/hambr-icon.png";
 import searchIcon from "../../../assets/images/search-icon.png";
 import gearIcon from "../../../assets/images/gear.png";
+import { useContext } from "react";
+import { UserState } from "../../../store/userStateProvider";
 function Header() {
+  const { currentUser } = useContext(UserState);
+  const userName =
+    currentUser && `${currentUser.firstName} ${currentUser.lastName}`;
+  const userFirstLetter = currentUser && currentUser.firstName[0];
   return (
     <div className={styles.header}>
       <div className={styles.hambrg}>
@@ -13,9 +19,9 @@ function Header() {
         <img src={searchIcon} alt="search" />
       </div>
       <div className={styles.userIcon}>
-        <p>E</p>
+        <p>{userFirstLetter}</p>
       </div>
-      <div className={styles.userName}>Eegene</div>
+      <div className={styles.userName}>{userName}</div>
       <div className={styles.setting}>
         <img src={gearIcon} alt="settings" />
       </div>

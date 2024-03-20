@@ -9,27 +9,19 @@
 .profilePhoto {
   height: 10rem;
 }
-.userProfile {
-  /* position: relative; */
-  width: 150px;
-  /* border-radius: 100vh; */
-}
-.userProfile img {
-  /* width: 132px; */
-  /* border-radius: 100vh; */
-  /* position: absolute; */
-  z-index: 2;
-}
-.userProfile div {
-  height: 150px;
-  width: 150px;
-  background-color: rgb(240, 235, 235);
-  /* position: absolute; */
-  z-index: 1;
-}
 .photoContainer {
   /* border-radius: 100vh; */
   border-bottom: 1px solid rgba(14, 13, 13, 0.2);
+  display: flex;
+  justify-content: center;
+}
+.photoContainer img {
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+  padding: 0.2rem;
+  border-radius: 100vh;
+  margin-bottom: 0.25rem;
 }
 .userInfo {
   display: grid;

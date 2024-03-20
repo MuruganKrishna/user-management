@@ -27,7 +27,6 @@ export const loader = async ({ params }) => {
 };
 export const action = async ({ request }) => {
   const formData = parseFormData(await request.formData());
-  debugger;
   const user = await updateData(formData.user, "users");
   const address = await updateData(formData.address, "addresses");
   console.log({ user, address });
