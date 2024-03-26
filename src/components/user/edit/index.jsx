@@ -1,13 +1,11 @@
 import {
   Form,
-  Link,
   redirect,
   useActionData,
   useLoaderData,
   useNavigation,
 } from "react-router-dom";
 import styles from "./edit.module.css";
-import Button from "../../UI/button";
 import { parseFormData } from "parse-nested-form-data";
 import AddressInfo from "./addressInfo";
 import UserInfo from "./userInfo";
@@ -27,7 +25,7 @@ function Edit() {
   return (
     <div className={styles.editPage}>
       <h2>Edit User</h2>
-      <Form method="post" className={styles.form}>
+      <Form method="post" className={styles.form} key={state}>
         <UserImageUpload user={user} />
         <UserInfo user={user} error={actionData && actionData.userError} />
         <AddressInfo
@@ -55,7 +53,7 @@ function Edit() {
 }
 
 export default Edit;
-export const action = async ({ params, request }) => {
+export const action = async ({ request }) => {
   const formData = parseFormData(await request.formData());
   const { addressError, userError, isError } = validateEdit(
     formData.user,

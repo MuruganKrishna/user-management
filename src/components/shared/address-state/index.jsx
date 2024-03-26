@@ -22,12 +22,14 @@ function AddressState({ state, city, error }) {
         name="address.state"
         defaultValue={state}
         error={error}
+        label={"State"}
       />
       <Select
         options={transformToOptions(cities)}
         name="address.city"
         defaultValue={city}
         error={error}
+        label={"City"}
       />
     </>
   );
