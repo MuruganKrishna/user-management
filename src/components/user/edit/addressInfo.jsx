@@ -1,18 +1,7 @@
-import { useState } from "react";
-import {
-  states,
-  statesWithCities,
-  transformToOptions,
-} from "../../../utils/states";
-import Select from "../../UI/select";
 import Input from "../../UI/input";
 import addressStyle from "./address.module.css";
+import AddressState from "../../shared/address-state";
 function AddressInfo({ styles, address = {}, error }) {
-  const [cities, setCities] = useState([address.city]);
-  const handleStateSelect = (e) => {
-    const updatedCities = statesWithCities[e.target.value];
-    setCities(updatedCities);
-  };
   return (
     <>
       <h3>User Address</h3>
@@ -34,21 +23,7 @@ function AddressInfo({ styles, address = {}, error }) {
           defaultValue={address.addressLine2}
           error={error}
         />
-        <Select
-          options={transformToOptions(states)}
-          onChange={handleStateSelect}
-          name="address.state"
-          label="State"
-          defaultValue={address.state}
-          error={error}
-        />
-        <Select
-          options={transformToOptions(cities)}
-          name="address.city"
-          label="City"
-          defaultValue={address.city}
-          error={error}
-        />
+        <AddressState state={address.state} city={address.city} error={error} />
         <Input
           type="number"
           name="address.zipcode"

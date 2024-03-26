@@ -1,9 +1,3 @@
-import { useState } from "react";
-import {
-  states,
-  statesWithCities,
-  transformToOptions,
-} from "../../../utils/states";
 import { useNavigation } from "react-router";
 import { Form } from "react-router-dom";
 import Button from "../../UI/button";
@@ -11,15 +5,9 @@ import Select from "../../UI/select";
 import Input from "../../UI/input";
 import UserImageUpload from "../../user/edit/userImageUpload";
 import styles from "./form.module.css";
+import AddressState from "../../shared/address-state";
 
 function UserForm({ user = {}, address = {}, error }) {
-  const [cities, setCities] = useState([
-    address.city || "Please Select the city",
-  ]);
-  const handleStateSelect = (e) => {
-    const updatedCities = statesWithCities[e.target.value];
-    setCities(updatedCities);
-  };
   const { state } = useNavigation();
   return (
     <>
@@ -106,17 +94,9 @@ function UserForm({ user = {}, address = {}, error }) {
             defaultValue={address.addressLine2}
             error={error && error.addressError}
           />
-          <Select
-            options={transformToOptions(states)}
-            onChange={handleStateSelect}
-            name="address.state"
-            defaultValue={address.state}
-            error={error && error.addressError}
-          />
-          <Select
-            options={transformToOptions(cities)}
-            name="address.city"
-            defaultValue={address.city}
+          <AddressState
+            state={address.state}
+            city={address.city}
             error={error && error.addressError}
           />
           <Input

@@ -29,6 +29,7 @@ export const states = [
   "West Bengal",
 ];
 export const statesWithCities = {
+  "--": ["--"],
   "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Tirupati"],
   "Arunachal Pradesh": ["Itanagar", "Tawang", "Pasighat"],
   Assam: ["Guwahati", "Silchar", "Dibrugarh"],

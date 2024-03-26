@@ -5,4 +5,10 @@
   padding: 0.2rem;
   border-radius: 100vh;
   margin-bottom: 0.25rem;
+  cursor: pointer;
+  transition: ease 100ms;
+}
+.img:hover {
+  /* scale: 1.05; */
+  box-shadow: 0 0 15px 5px rgb(114, 113, 113, 0.5);
 }

@@ -15,14 +15,15 @@ import { getUserAddress } from "../../../utils/address";
 import { getCurrentUser, updateData } from "../../../utils/user";
 import UserImageUpload from "./userImageUpload";
 import { validateEdit } from "../../../utils/validate";
+import LoadingButton from "../../UI/loading-button";
+import LoadingLink from "../../UI/loading-link";
 
 function Edit() {
   const { state } = useNavigation();
-  const { user, address } = useLoaderData();
+  let { user, address } = useLoaderData();
   const actionData = useActionData();
-  let buttonName = "Save";
-  if (state === "loading") buttonName = "Loading";
-  if (state === "submitting") buttonName = "Submitting";
+  if (actionData && actionData.user) user = actionData.user;
+  if (actionData && actionData.address) address = actionData.address;
   return (
     <div className={styles.editPage}>
       <h2>Edit User</h2>
@@ -35,12 +36,18 @@ function Edit() {
           error={actionData && actionData.addressError}
         />
         <div className={styles.btnGroup}>
-          <Button disabled={state === "submitting" || state === "loading"}>
-            {buttonName}
-          </Button>
-          <Button disabled={state === "submitting" || state === "loading"}>
-            <Link to="../">Back</Link>
-          </Button>
+          <LoadingButton
+            idleText={"Save"}
+            submittingText={"Editing"}
+            loadingText={"Loading"}
+            state={state}
+          />
+          <LoadingLink
+            idleText={"Back"}
+            loadingText="Loading"
+            state={state}
+            to=".."
+          />
         </div>
       </Form>
     </div>
@@ -54,7 +61,13 @@ export const action = async ({ params, request }) => {
     formData.user,
     formData.address
   );
-  if (isError) return { addressError, userError };
+  if (isError)
+    return {
+      addressError,
+      userError,
+      user: formData.user,
+      address: formData.address,
+    };
   await updateData(formData.user, "users");
   await updateData(formData.address, "addresses");
   return redirect("/user");

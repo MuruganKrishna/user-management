@@ -3,22 +3,12 @@ import imgStyle from "./user-image.module.css";
 function ShowUserImage({ userImage, ...props }) {
   return (
     <>
-      {userImage && (
-        <img
-          className={imgStyle.img}
-          src={`/demo-images/${userImage}`}
-          alt="userImage"
-          {...props}
-        />
-      )}
-      {!userImage && (
-        <img
-          className={imgStyle.img}
-          src={defaultImage}
-          alt="userImage"
-          {...props}
-        />
-      )}
+      <img
+        className={imgStyle.img}
+        src={userImage ? `/demo-images/${userImage}` : defaultImage}
+        alt="userImage"
+        {...props}
+      />
     </>
   );
 }

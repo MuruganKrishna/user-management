@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <AppLayout />,
     children: [
-      { index: true, element: <Login /> },
+      { index: true, element: <Login />, action: loginAction },
       { path: "login", element: <Login />, action: loginAction },
       { path: "signup", element: <Signup />, action: signupAction },
       {

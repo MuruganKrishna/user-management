@@ -24,6 +24,7 @@ function UserInfo({ user, error }) {
           defaultValue={user.firstName}
           label="First Name"
           error={error}
+          key={`${(error && error["user.firstName"]) || "user.firstName"}`}
         />
         <Input
           type="text"
@@ -31,7 +32,9 @@ function UserInfo({ user, error }) {
           placeholder="Doe"
           defaultValue={user.lastName}
           label="Last Name"
+          key={`${(error && error["user.lastName"]) || "user.lastName"}`}
           error={error}
+          required={true}
         />
         <Input
           type="text"
@@ -40,6 +43,7 @@ function UserInfo({ user, error }) {
           defaultValue={user.middleName}
           label="Middle Name"
           error={error}
+          key={`${(error && error["user.middleName"]) || "user.middleName"}`}
         />
         <Input
           type="email"
@@ -48,6 +52,7 @@ function UserInfo({ user, error }) {
           defaultValue={user.email}
           label="Email"
           error={error}
+          key={`${(error && error["user.email"]) || "user.email"}`}
         />
       </div>
     </>
