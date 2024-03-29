@@ -57,6 +57,9 @@
   margin-top: 1rem;
   font-weight: 700;
 }
+.LoginEmail {
+  background-color: red;
+}
 /* @media (max-width: 768px) {
   .card {
     flex-grow: 1;

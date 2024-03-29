@@ -15,6 +15,7 @@ function Login() {
   const { state } = useNavigation();
   const actionData = useActionData();
   const isDisabled = state === "loading" || state === "submitting";
+  console.log("this is the color class name of the login", styles.LoginEmail);
   return (
     <div className={styles.loginPage}>
       <div className={styles.card}>
@@ -25,7 +26,12 @@ function Login() {
           </p>
         )}
         <Form className={styles.loginForm} method="post">
-          <Input type="text" name="email" label="Email" />
+          <Input
+            type="text"
+            name="email"
+            label="Email"
+            className={styles.LoginEmail}
+          />
           <Input type="password" name="password" label="Password" />
           <Button disabled={isDisabled}>
             {isDisabled ? "Submitting" : "Login"}

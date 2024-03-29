@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./input.module.css";
 function Input({ className, error, label, onChange = () => {}, ...props }) {
   const [currentError, setCurrentError] = useState(error);
-
+  console.log("input.js classname", className);
   const handleOnchange = (e) => {
     if (e.target.value.length <= 0 && props.required)
       setCurrentError({ [props.name]: "Not to be empty" });

@@ -86,6 +86,7 @@ function UserForm({ user = {}, address = {}, error }) {
             placeholder="no:1,street1..."
             defaultValue={address.addressLine1}
             error={error && error.addressError}
+            label="Address Line 1"
           />
           <Input
             type="text"
@@ -93,6 +94,7 @@ function UserForm({ user = {}, address = {}, error }) {
             placeholder="no:1,street1..."
             defaultValue={address.addressLine2}
             error={error && error.addressError}
+            label="Address Line 2"
           />
           <AddressState
             state={address.state}
@@ -105,6 +107,7 @@ function UserForm({ user = {}, address = {}, error }) {
             placeholder="600028"
             defaultValue={address.zipcode}
             error={error && error.addressError}
+            label="Zipcode"
           />
         </div>
 
