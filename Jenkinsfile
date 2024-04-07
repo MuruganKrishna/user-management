@@ -14,21 +14,21 @@ pipeline {
                     // sh 'docker build -t murugan1997/user-management:latest .'
                     // // Push Docker image to Docker registry
                     // sh 'docker push murugan1997/user-management:latest'
-                    echo "building"
+                    echo "building ${BRANCH_NAME}"
                 }
             }
         }
         stage("testing"){
             steps(){
                 script {
-                    echo "Testing..."
+                    echo "Testing ${BRANCH_NAME}..."
                 }
             }
         }
         stage("deploy"){
             steps(){
                 script {
-                    echo "deploying..."
+                    echo "deploying ${BRANCH_NAME} ..."
                 }
             }
         }
