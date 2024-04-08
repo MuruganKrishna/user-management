@@ -7,6 +7,14 @@ pipeline {
     // }
 
     stages {
+        stage('Verify') {
+            steps {
+                sh '''
+                    docker version
+                    docker-compose version
+                '''
+            }
+        }
         stage('Build ') {
             steps() {
                 script {
