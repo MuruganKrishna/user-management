@@ -10,7 +10,6 @@ pipeline {
         stage('Verify') {
             steps {
                 sh '''
-                    docker-compose version
                     ls
                 '''
             }
