@@ -7,14 +7,19 @@ pipeline {
     // }
 
     stages {
+        stage('creating infra'){
+            steps {
+                build job: 'terraform-pipline-usm',parameters: [string(name: 'ACTION', value: 'apply')]
+            }
+        }
         stage('Build ') {
             steps() {
                 script {
-                    // // Build Docker image for React application
-                    // sh 'docker build -t murugan1997/user-management:latest .'
-                    // // Push Docker image to Docker registry
-                    // sh 'docker push murugan1997/user-management:latest'
-                    echo "building ${env.BRANCH_NAME}"
+                    echo "this is the ip username from the env: $IP_USER_ADDRESS"
+                    def ipaddress = sh(script: 'terraform output -raw instance_ip_addr', returnStdout: true).trim()
+                    def username = sh(script: 'terraform output -raw VmIpAddress', returnStdout: true).trim()
+                    echo "this is the ip address: $ipaddress"
+                    echo "this is the ip username: $username"
                 }
             }
         }
@@ -32,6 +37,11 @@ pipeline {
                 }
             }
         }
+        // stage('destroying infra'){
+        //     steps {
+        //         build job: 'terraform-pipline-usm',parameters: [string(name: 'ACTION', value: 'destroy')]
+        //     }
+        // }
         
         // stage('Deploy to Kubernetes') {
         //     steps {
