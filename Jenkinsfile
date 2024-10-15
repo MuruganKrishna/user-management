@@ -10,6 +10,11 @@ pipeline {
     }
 
     stages {
+           stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage("testing"){
             steps(){
                 script {
