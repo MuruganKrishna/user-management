@@ -1,6 +1,4 @@
 pipeline {
-    agent any
-    
     // triggers {
     //     // Poll the Git repository every minute for changes
     //     pollSCM('* * * * *')
