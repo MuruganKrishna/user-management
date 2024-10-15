@@ -5,6 +5,9 @@ pipeline {
     //     // Poll the Git repository every minute for changes
     //     pollSCM('* * * * *')
     // }
+    environment {
+        GIT_CEILING_DIRECTORIES = '/var/jenkins_home/workspace'
+    }
 
     stages {
         stage("testing"){
